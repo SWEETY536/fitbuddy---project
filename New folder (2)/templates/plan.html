@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Your FitBuddy Plan{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card bg-primary text-white p-4">
+            <h2>Workout Plan for {{ user.name }}</h2>
+            <p class="mb-0 fs-5">
+                <strong>Goal:</strong> {{ user.goal | title }} | 
+                <strong>Intensity:</strong> {{ user.intensity | title }}
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 mb-4">
+        <div class="card p-4 h-100">
+            <h3 class="mb-3">📅 Your 7-Day Plan</h3>
+            <div class="p-3 bg-light border rounded" style="white-space: pre-wrap; font-family: monospace;">{{ user.workout_plan }}</div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <!-- Nutrition Tip Section -->
+        <div class="card p-4 border-success mb-4">
+            <h4 class="text-success">🥑 Nutrition & Recovery</h4>
+            <p class="fst-italic mb-0">{{ user.nutrition_tip }}</p>
+        </div>
+
+        <!-- Feedback Section -->
+        <div class="card p-4 border-warning">
+            <h4 class="text-warning">⚙️ Tweak Your Plan</h4>
+            <form action="/feedback/{{ user.id }}" method="post">
+                <div class="mb-3">
+                    <label class="form-label text-muted">Not quite right? Let the AI know to regenerate it!</label>
+                    <textarea class="form-control" name="feedback" rows="4" placeholder="e.g. Include more cardio, make it harder, add yoga..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-warning w-100 fw-bold">Update AI Plan</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="text-center mt-2">
+    <a href="/" class="btn btn-secondary">Start Over</a>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}      # This template extends the base.html layout, inheriting its structure and styles.
+
+{% block title %}FitBuddy - Home{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card p-4">
+            <h2 class="text-center mb-4">Create Your Fitness Plan</h2>
+            <form action="/generate" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Name:</label>
+                    <input type="text" class="form-control" name="name" required>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Age:</label>
+                        <input type="number" class="form-control" name="age" required min="10" max="150">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Weight (kg):</label>
+                        <input type="number" class="form-control" name="weight" required min="20">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Primary Goal:</label>
+                    <select class="form-select" name="goal">
+                        <option value="weight loss">Weight Loss</option>
+                        <option value="muscle gain">Muscle Gain</option>
+                        <option value="general wellness">General Wellness</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">Preferred Intensity:</label>
+                    <select class="form-select" name="intensity">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Generate My AI Plan 🚀</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
